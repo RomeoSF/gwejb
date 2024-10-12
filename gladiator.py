@@ -38,27 +38,46 @@ def din_att():
                 giltig_attack = att
                 break
         if giltig_attack:
-            attack_namn = giltig_attack.namn
-            attack_skada = giltig_attack.skada
+            pl_attack_namn = giltig_attack.namn
+            pl_attack_skada = giltig_attack.skada
             break
         else:
             print("Ogitligt svar, försök igen")
     if karaktär1.hälsa and fie_hälsa > 0:
-        fie_hälsa -= attack_skada
-
-    
-    
+        fie_hälsa -= pl_attack_skada
+        print(f"Du valde: {pl_attack_namn}")
         
-
-    
-    
 
 
 #   Funktion för fiendens attack
 
 def fiende_att():
-    fie_att = random.choice(attack)
-  
+    while True:
+        fie_att = random.choice(attack)
+        fie_attack_namn = fie_att.namn
+        fie_attack_skada = fie_att.skada
+        break
+    if karaktär1.hälsa and fie_hälsa > 0:
+         karaktär1.hälsa -= fie_attack_skada
+         print(f"Fienden valde: {fie_attack_namn}")
+    
+# Funktion för att köra spelet
 
-
-#fiende_att()
+def spela():
+    while karaktär1.hälsa and fie_hälsa > 0:
+        print("-----------------------")
+        print(f"Fiendens hälsa: {fie_hälsa}HP")
+        print(f"Din hälsa: {karaktär1.hälsa}HP")
+        din_att()
+        fiende_att()
+        if karaktär1.hälsa < 0:
+            print("-----------------------")
+            print("Du förlora!")
+            exit()
+        elif fie_hälsa < 0:
+            print("-----------------------")
+            print("Du vann!")
+            exit()
+        
+    
+spela()
