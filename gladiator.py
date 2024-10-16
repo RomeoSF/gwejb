@@ -26,6 +26,16 @@ spark = Attacker("spark", 15)
 
 fie_hälsa = 100
 
+# Svårighetsgrader
+
+lätt = 0.75
+
+normal = 1
+
+svår = 1.25
+
+vedervärdigt = 1.5
+
 # Funktion för spelarens attack
 def din_att():
     global fie_hälsa
@@ -47,8 +57,6 @@ def din_att():
         fie_hälsa -= pl_attack_skada
         print(f"Du valde: {pl_attack_namn}")
         
-
-
 #   Funktion för fiendens attack
 
 def fiende_att():
@@ -61,6 +69,7 @@ def fiende_att():
          karaktär1.hälsa -= fie_attack_skada
          print(f"Fienden valde: {fie_attack_namn}")
     
+
 # Funktion för att köra spelet
 
 def spela():
@@ -79,5 +88,25 @@ def spela():
             print("Du vann!")
             exit()
         
-    
+# Spelare väljer svårighetsgrad
+
+while True:
+    print("-----------------------")
+    svårhetsgrad = input("Vilken svårighetsgrad vill du använda?\nLätt\nNormal\nSvår\nVedervärdigt\n")
+    if svårhetsgrad.lower() == "lätt":
+        fie_hälsa *= lätt
+        break
+    elif svårhetsgrad.lower() == "normal":
+        fie_hälsa *= normal
+        break
+    elif svårhetsgrad.lower() == "svår":
+        fie_hälsa *= svår
+        break
+    elif svårhetsgrad.lower() == "vedervärdigt":
+        fie_hälsa *= vedervärdigt
+        break
+    else:
+        print("-----------------------")
+        print("Ogitligt svar")
+
 spela()
