@@ -14,13 +14,14 @@ karaktär1 = Karaktärer("Jöns", 100)
 attack = []
 
 class Attacker:
-    def __init__(self, namn, skada):
+    def __init__(self, namn, skada, träff_chans):
         self.skada = skada
         self.namn = namn
+        self.träff_chans = träff_chans
         attack.append(self)
 
-jabb = Attacker("jabb", 10)
-spark = Attacker("spark", 15)
+jabb = Attacker("jabb", 10, )
+spark = Attacker("spark", 15, )
 
 # Fiendens hälsa
 
