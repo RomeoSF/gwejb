@@ -3,31 +3,40 @@ import random
 # Olika karaktärer i spelet
 
 class Karaktärer:
-    def __init__(self, namn, hälsa, kar_modP):
+    def __init__(self, namn, hälsa):
         self.namn = namn
         self.hälsa = hälsa
-        self.kar_modP = kar_modP
         
-karaktär1 = Karaktärer("Jöns", 100, 0)
+karaktär1 = Karaktärer("Jöns", 100,)
+
+# Antalet mod poäng spelaren har
+
+kar_modP = 0
 
 # Olika attacker i spelet
 
 attack = []
 
-class Attacker:
-    def __init__(self, namn, skada, träff_chans, mod_poäng):
+class Attacker: 
+    def __init__(self, namn, skada, träff_chans, besk):
         self.skada = skada
         self.namn = namn
         self.träff_chans = träff_chans
-        self.mod_poäng = mod_poäng
+        self.besk = besk
         attack.append(self)
 
-jabb = Attacker("jabb", 10, 85, 5)
-spark = Attacker("spark", 15, 70, 8)
+jabb = Attacker("jabb", 10, 85, "En snabb och pålitlig attack som är lätt att träffa med. Ger 5 modighetspoäng.")
 
-# Variabel för att holla koll på längden av matchen
+spark = Attacker("spark", 15, 70, "En kraftfullare attack med medelhög träffchans. Ger 8 modighetspoäng.")
 
-tid = 0
+tung_spark = Attacker ("tung spark", 20, 55, "Den mest kraftfulla attacken, men svårare att träffa med. Ger 12 modighetspoäng.")
+
+
+# Maximal tid för matchen (antal rundor) och Nuvarande tid/rundor
+
+max_tid = 10  
+
+tid = 0  
 
 # Fiendens hälsa
 
@@ -50,6 +59,9 @@ vedervärdigt = 1.5
 # Funktion för spelarens attack
 def din_att():
     global fie_hälsa
+    global kar_modP
+    global tid
+
     while True:
         att_val = input("Välj din attack: ")
         giltig_attack = None
@@ -69,12 +81,23 @@ def din_att():
         if random.randint(1, 100) < pl_attack_träffCH:
             fie_hälsa -= pl_attack_skada
             print(f"Du valde: {pl_attack_namn}")
+            if pl_attack_namn == "jabb":
+                kar_modP = kar_modP + 5
+            elif pl_attack_namn == "spark":
+                kar_modP = kar_modP + 8
+            elif pl_attack_namn == "tung spark":
+                kar_modP = kar_modP + 12
         else:
             print("Du missade!")
-        
+    # Öka tiden efter varje attack
+    tid += 1  
+    
 #   Funktion för fiendens attack
 
 def fiende_att():
+    global fie_modP
+    global karaktär1
+
     while True:
         fie_att = random.choice(attack)
         fie_attack_namn = fie_att.namn
@@ -85,13 +108,47 @@ def fiende_att():
         if random.randint(1, 100) < fie_attack_träffCH:
             karaktär1.hälsa -= fie_attack_skada
             print(f"Fienden valde: {fie_attack_namn}")
+            if fie_attack_namn == "jabb":
+                fie_modP = fie_modP + 5
+            elif fie_attack_namn == "spark":
+                fie_modP = fie_modP + 8
+            elif fie_attack_namn == "tung spark":
+                fie_modP = fie_modP + 12
         else:
             print("Fienden missade!")
+
+
+# Funktion för att visa attackbeskrivningar
+def visa_attacker():
+    print("\nTillgängliga attacker:")
+    print("-----------------------")
+    for att in attack:
+        print(f"{att.namn.title()}:")
+        print(f"Skada: {att.skada}")
+        print(f"Träffchans: {att.träff_chans}%")
+        print(f"Beskrivning: {att.besk}")
+        print("-----------------------")
     
+
+# Funktion för att avgöra vinnare vid oavgjort
+def avgör_vinnare():
+    print("-----------------------")
+    print("Matchen är slut!")
+    print(f"Din modighet: {kar_modP}")
+    print(f"Fiendens modighet: {fie_modP}")
+    
+    if kar_modP > fie_modP:
+        print("Du vinner på modighet!")
+    elif fie_modP > kar_modP:
+        print("Fienden vinner på modighet!")
+    else:
+        print("Fullständigt oavgjort!")
 
 # Funktion för att köra spelet
 
 def spela():
+    visa_attacker()
+    global tid
     while karaktär1.hälsa and fie_hälsa > 0:
         print("-----------------------")
         print(f"Fiendens hälsa: {fie_hälsa}HP")
@@ -106,7 +163,13 @@ def spela():
             print("-----------------------")
             print("Du vann!")
             exit()
-        
+        # Om tiden är slut eller båda fortfarande lever
+        elif tid >= max_tid:
+            avgör_vinnare()
+            break
+
+
+
 # Spelare väljer svårighetsgrad
 
 while True:
