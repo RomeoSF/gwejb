@@ -1,19 +1,18 @@
-# Rymdfängelseflykten
+# Space Prison Escape 
 
 def cell_room():
-    """Startrum - fängelcellen."""
-    print("\n--- FÄNGELSECELL ---")
-    print("Du vaknar upp i en trång, metallisk cell ombord på rymdstationen Blackstar.")
-    print("Väggarna är täckta av elektroniska lås och säkerhetsskärmar.")
-    print("Du vet att du måste fly innan nästa säkerhetskontroll.")
+    """Starting room - the prison cell."""
+    print("\n--- PRISON CELL ---")
+    print("You wake up in a cramped, metallic cell aboard the space station Blackstar.")
+    print("The walls are covered with electronic locks and security screens.")
+    print("You know you must escape before the next security check.")
     
     while True:
-        print("\nVad vill du göra?")
-        print("1. Undersök sängbädden")
-        print("2. Kontrollera celldörren")
-        print("3. Se dig omkring i cellen")
+        print("\nWhat do you want to do?")
+        print("1. Examine the bed")
+        print("2. Check the cell door")
+        print("3. Look around the cell")
         
-        val = input("Ange ditt val (1-3): ")
+        choice = input("Enter your choice (1-3): ")
         
-        # Lägg till skit till valen
-
+        # Add sum for choices luh nun bird.
