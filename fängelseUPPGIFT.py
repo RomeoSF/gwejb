@@ -26,3 +26,15 @@ def cell_room():
 def hallway1():
     print("\n--- Hallway 1 ---")
     print("")
+
+def Security_room():
+    print("\n--- Security room ---")
+    print("")
+
+def Logistics():
+    print("\n--- Logistics ---")
+    print("")
+
+def Hallway2():
+    print("\n--- Hallway 2 ---")
+    print("")
