@@ -1,7 +1,7 @@
 cell_door = "locked"
 
 
-# Space Prison Escape 
+# Space Prison Escape elr ngt vafan vet jag
 
 def cell_room():
     """Starting room - the prison cell."""
@@ -20,8 +20,21 @@ def cell_room():
         
         if choice == 1:
             print("")
+            # Fortsättning av val vilket leder till öppnande av dörren
+        elif choice == 2:
+            print("You look around the cell door, giving it a quick tug\nhowever it's not budging at all")
+            return
+        elif choice == 3:
+            print("")
+        else:
+            print("Error: Incorrect Command")
 
-        # Add sum for choices luh nun bird.
+def start():
+    print("\n--- START ---")
+
+def menu():
+    print("\n--- MENU ---")
+    menu_choice = input("")
 
 def hallway1():
     print("\n--- Hallway 1 ---")
@@ -38,3 +51,6 @@ def Logistics():
 def Hallway2():
     print("\n--- Hallway 2 ---")
     print("")
+
+
+cell_room()
