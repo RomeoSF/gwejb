@@ -4,6 +4,7 @@ cell_door = "locked"
 # Space Prison Escape elr ngt vafan vet jag
 
 def cell_room():
+    global cell_door
     """Starting room - the prison cell."""
     print("\n--- PRISON CELL ---")
     print("You wake up in a cramped, metallic cell aboard the space station Blackstar.")
@@ -16,21 +17,41 @@ def cell_room():
         print("2. Check the cell door")
         print("3. Look around the cell")
         
-        choice = input("Enter your choice (1-3): ")
+        choice = input("Enter your choice (1-3): ").strip()
         
-        if choice == 1:
-            print("")
-            # Fortsättning av val vilket leder till öppnande av dörren
-        elif choice == 2:
-            print("You look around the cell door, giving it a quick tug\nhowever it's not budging at all")
-            return
-        elif choice == 3:
+        if choice == "1":
+            print("You find a piece of wire under the cushions.\nMaybe it's useful for the door?")
+            cell_door = "unlocked"
+            
+        elif choice == "2":
+            if cell_door == "unlocked":
+                hallway1()
+                break
+            else:
+                print("You look around the cell door, giving it a quick tug\nhowever it's not budging at all")
+        elif choice == "3":
             print("")
         else:
             print("Error: Incorrect Command")
 
 def start():
-    print("\n--- START ---")
+    print("\n--- START MENU ---")
+    print("Welcome to Space Prison Escape!")
+    print("1. Start your escape")
+    print("2. Exit")
+
+    while True:
+        choice = input("Enter your choice (1-2): ")
+
+        if choice == "1":
+            cell_room()
+            break
+        elif choice == "2":
+            print("Exiting game. Goodbye!")
+            break
+        else:
+            print("Error: Incorrect Command")
+
 
 def menu():
     print("\n--- MENU ---")
@@ -52,5 +73,4 @@ def Hallway2():
     print("\n--- Hallway 2 ---")
     print("")
 
-
-cell_room()
+start()
