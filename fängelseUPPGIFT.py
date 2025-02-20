@@ -22,10 +22,18 @@ def cell_room():
         choice = input("Enter your choice (1-4): ")
         
         if choice == "1":
-            print("You find a piece of wire under the stained cushions.\nMaybe it's useful for the door?")
-            cell_door = "unlocked"
+            print("You examine the bed, it's filthy and uncomfortable.\nAll you have is a thin blanket and a pillow.")
+            choice = input("Do you want to check under the pillow? (y/n): ").lower()
+            if choice == "y":
+                print("You find a piece of wire under the stained pillow.\nMaybe it's useful for the door?")
+                cell_door = "unlocked"
+            elif choice == "n":
+                print("You decide to leave the pillow alone.")
+            else:
+                print("Error: Incorrect Command")
             
         elif choice == "2":
+
             if cell_door == "unlocked":
                 hallway1()
                 break
