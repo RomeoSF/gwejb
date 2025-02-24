@@ -1,5 +1,8 @@
+import random
+
 cell_door = "locked"
 current_room = None
+sec_code = random.randint(1000, 9999)
 
 # Space Prison Escape elr ngt vafan vet jag
 
@@ -92,13 +95,95 @@ def hallway1():
     global current_room
     current_room = hallway1
     print("\n--- Hallway 1 ---")
-    print("")
+    print("You are in a dimly lit hallway. There are doors leading to different rooms.\n'Jesus fucking christ, this hallway smells like a fucking sewer.' you think to yourself.")
+    
+    while True:
+        print("\nWhat do you want to do?\n")
+        print("1. Enter the break room")
+        print("2. Go back to your cell")
+        print("3. Go to the scrubber room")
+        print("4. Open menu")
+        
+        choice = input("Enter your choice (1-4): ")
+        
+        if choice == "1":
+            break_room()
+            break
+        elif choice == "2":
+            cell_room()
+            break
+        elif choice == "3":
+            scrubber_room()
+        elif choice == "4":
+            menu()
+            break
+        else:
+            print("Error: Incorrect Command")
+
+def break_room():
+    global current_room
+    current_room = break_room
+    print("\n--- Break room ---")
+    print("You are in the break room. There are some tables and chairs scattered around.")
+    
+    while True:
+        print("\nWhat do you want to do?\n")
+        print("1. Search the room")
+        print("2. Go to the security room")
+        print("3. Go back to the hallway")
+        print("4. Open menu")
+        
+        choice = input("Enter your choice (1-4): ")
+        
+        if choice == "1":
+            print("You search the room but find nothing useful.")
+        elif choice == "2":
+            print("You try to open the door to the security room, but it's locked.\nTheres a keypad next to the door.")
+            choice = input("Do you want to try to enter the code? (y/n): ").lower()
+            if choice == "y":
+                code = input("Enter the 4-digit code: ")
+                if code == str(sec_code):
+                    Security_room()
+                    break
+                else:
+                    print("The code is incorrect.")
+            elif choice == "n":
+                print("You decide to leave the door alone.")
+            else:
+                print("Error: Incorrect Command")
+        elif choice == "3":
+            hallway1()
+            break
+        elif choice == "4":
+            menu()
+            break
+        else:
+            print("Error: Incorrect Command")
 
 def Security_room():
     global current_room
     current_room = Security_room
     print("\n--- Security room ---")
-    print("")
+    print("You are in the security room. There are monitors showing different parts of the station.")
+    
+    while True:
+        print("\nWhat do you want to do?\n")
+        print("1. Search the room")
+        print("2. Go back to the break room")
+        print("3. Open menu")
+        
+        choice = input("Enter your choice (1-3): ")
+        
+        if choice == "1":
+            print("You search the room but find nothing useful.")
+        elif choice == "2":
+            break_room()
+            break
+        elif choice == "3":
+            menu()
+            break
+        else:
+            print("Error: Incorrect Command")
 
 def Logistics():
     global current_room
@@ -109,7 +194,11 @@ def Logistics():
 def Hallway2():
     global current_room
     current_room = Hallway2
-    print("\n--- Hallway 2 ---")
-    print("")
 
-start()
+def escape_pod():
+    global current_room
+    current_room = escape_pod
+
+def scrubber_room():
+    global current_room
+    current_room = scrubber_room
