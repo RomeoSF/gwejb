@@ -38,6 +38,7 @@ def cell_room():
         elif choice == "2":
 
             if cell_door == "unlocked":
+                print("\nYou use the piece of wire and your saliva to fry the electronic lock.\nIt opens with a loud creaking sound.")
                 hallway1()
                 break
             else:
@@ -195,10 +196,12 @@ def Hallway2():
     global current_room
     current_room = Hallway2
 
-def escape_pod():
+def escape_pod_launchers():
     global current_room
-    current_room = escape_pod
+    current_room = escape_pod_launchers
 
 def scrubber_room():
     global current_room
     current_room = scrubber_room
+
+start()
