@@ -103,9 +103,10 @@ def hallway1():
         print("1. Enter the break room")
         print("2. Go back to your cell")
         print("3. Go to the scrubber room")
-        print("4. Open menu")
+        print("4. Inspect the hallway")
+        print("5. Open menu")
         
-        choice = input("Enter your choice (1-4): ")
+        choice = input("Enter your choice (1-5): ")
         
         if choice == "1":
             break_room()
@@ -115,7 +116,11 @@ def hallway1():
             break
         elif choice == "3":
             scrubber_room()
+            break
         elif choice == "4":
+            print("You inspect the hallway carefully. Among the grime and debris, you notice a small piece of paper stuck to the wall.")
+            print(f"The paper has a 4-digit code written on it: {sec_code}. This might be useful for the security room.")
+        elif choice == "5":
             menu()
             break
         else:
